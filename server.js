@@ -1,14 +1,12 @@
 //import express module
 const express = require("express");
 
-const bodyParser = require("body-parser");
-
 //use express in app variable
 const app = express();
 
 const router = require("./src/routes/router");
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use("/api/v1/", router);
 
