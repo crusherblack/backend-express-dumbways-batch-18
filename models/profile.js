@@ -1,26 +1,26 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class todo extends Model {
+  class profile extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      profile.hasOne(models.user);
     }
   }
-  todo.init(
+  profile.init(
     {
-      title: DataTypes.STRING,
-      isDone: DataTypes.BOOLEAN,
-      description: DataTypes.TEXT,
+      jenisKelamin: DataTypes.STRING,
+      alamat: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "todo",
+      modelName: "profiles",
     }
   );
-  return todo;
+  return profile;
 };
