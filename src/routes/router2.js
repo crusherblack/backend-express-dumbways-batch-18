@@ -20,15 +20,24 @@ const {
   getAuthorsBooks,
 } = require("../controller/database/bookAuthor");
 
+const { getBars, getFoos } = require("../controller/database/fooBar");
+
 router.get("/todos", getTodos);
 router.get("/todo/:id", detailTodo);
 router.post("/todo", storeTodo);
 router.delete("/todo/:id", deleteTodo);
 
-router.get("/users", readUser);
-router.get("/profiles", readProfile);
+//hasOne & belongsTo
+/* router.get("/users", readUser);
+router.get("/profiles", readProfile); */
+
+router.get("/foos", getFoos); //get Parent dengan children || HasOne
+router.get("/bars", getBars); //get Children dengan parent || BelongsTo
+
+//hasMany
 router.get("/user-jobs", getUserJobs);
 
+//manyToMany
 router.get("/books-authors", getBooksAuthors);
 router.get("/authors-books", getAuthorsBooks);
 

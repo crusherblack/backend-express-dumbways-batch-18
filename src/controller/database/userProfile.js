@@ -1,6 +1,6 @@
 const { user, profiles, Job } = require("../../../models");
 
-exports.readUser = async (req, res) => {
+/* exports.readUser = async (req, res) => {
   try {
     const usersData = await user.findAll({
       include: {
@@ -47,7 +47,7 @@ exports.readProfile = async (req, res) => {
       },
     });
   }
-};
+}; */
 
 exports.getUserJobs = async (req, res) => {
   try {
