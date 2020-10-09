@@ -1,6 +1,9 @@
 //import express module
 const express = require("express");
 
+//use dontenv
+require("dotenv").config();
+
 //use express in app variable
 const app = express();
 

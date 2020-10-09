@@ -2,6 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
+const { auth: authDummy } = require("../middleware/dummyAuth");
+const { authenticated } = require("../middleware/authentication");
+
 const {
   read: getTodos,
   create: storeTodo,
@@ -22,10 +25,12 @@ const {
 
 const { getBars, getFoos } = require("../controller/database/fooBar");
 
-router.get("/todos", getTodos);
-router.get("/todo/:id", detailTodo);
-router.post("/todo", storeTodo);
-router.delete("/todo/:id", deleteTodo);
+const { register, login } = require("../controller/database/auth");
+
+router.get("/todos", authenticated, getTodos);
+router.get("/todo/:id", authenticated, detailTodo);
+router.post("/todo", authenticated, storeTodo);
+router.delete("/todo/:id", authenticated, deleteTodo);
 
 //hasOne & belongsTo
 /* router.get("/users", readUser);
@@ -40,5 +45,9 @@ router.get("/user-jobs", getUserJobs);
 //manyToMany
 router.get("/books-authors", getBooksAuthors);
 router.get("/authors-books", getAuthorsBooks);
+
+//auth login & register
+router.post("/register", register);
+router.post("/login", login);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const { todo } = require("../../../models");
 
 exports.read = async (req, res) => {
+  console.log("INI ADALAH ID USER YANG LOGIN", req.user);
   try {
     const todos = await todo.findAll();
 
