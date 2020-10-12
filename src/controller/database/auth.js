@@ -11,6 +11,34 @@ const joi = require("@hapi/joi");
 //key for decrypt jwt token
 const jwtKey = process.env.JWT_KEY;
 
+exports.checkAuth = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.user.id,
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "password"],
+      },
+    });
+
+    res.send({
+      message: "User Valid",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).send({
+      error: {
+        message: "Server ERROR",
+      },
+    });
+  }
+};
+
 exports.register = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;

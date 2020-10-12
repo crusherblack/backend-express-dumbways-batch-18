@@ -25,7 +25,7 @@ const {
 
 const { getBars, getFoos } = require("../controller/database/fooBar");
 
-const { register, login } = require("../controller/database/auth");
+const { register, login, checkAuth } = require("../controller/database/auth");
 
 router.get("/todos", authenticated, getTodos);
 router.get("/todo/:id", authenticated, detailTodo);
@@ -49,5 +49,6 @@ router.get("/authors-books", getAuthorsBooks);
 //auth login & register
 router.post("/register", register);
 router.post("/login", login);
+router.get("/auth", authenticated, checkAuth);
 
 module.exports = router;

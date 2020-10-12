@@ -1,6 +1,8 @@
 //import express module
 const express = require("express");
 
+const cors = require("cors");
+
 //use dontenv
 require("dotenv").config();
 
@@ -11,6 +13,7 @@ const router = require("./src/routes/router");
 const router2 = require("./src/routes/router2");
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/v1/", router);
 app.use("/api/v2/", router2);
